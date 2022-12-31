@@ -79,12 +79,17 @@ const Post = ({ post, setCurrentId }) => {
           title={post.title}
         />
         <div className={classes.overlay}>
-          <Typography variant="h6">{post.name}</Typography>
+          <Typography className={classes.title} variant="h5" gutterBottom>
+            {post.title}
+          </Typography>
+        </div>
+        <div className={classes.created}>
           <Typography variant="body2">
             {moment(post.createdAt).fromNow()}
           </Typography>
+          <Typography variant="h6">{post.name}</Typography>
         </div>
-        {(user?.result?.googleId === post?.creator ||
+        {/* {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (
           <div className={classes.overlay2}>
             <Button
@@ -95,18 +100,16 @@ const Post = ({ post, setCurrentId }) => {
               <MoreHorizIcon fontSize="default" />
             </Button>
           </div>
-        )}
-        <Typography className={classes.title} variant="h5" gutterBottom>
-          {post.title}
-        </Typography>
-        <div className={classes.details}>
+        )} */}
+
+        {/* <div className={classes.details}>
           <Typography variant="body2" color="textSecondary">
             {post.tags.map((tag) => `#${tag} `)}
           </Typography>
-        </div>
+        </div> */}
       </ButtonBase>
 
-      <CardActions className={classes.cardActions}>
+      {/* <CardActions className={classes.cardActions}>
         <Button
           size="small"
           color="primary"
@@ -128,7 +131,7 @@ const Post = ({ post, setCurrentId }) => {
             Delete
           </Button>
         )}
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };

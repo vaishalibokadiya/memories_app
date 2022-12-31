@@ -4,6 +4,7 @@ import {
   Typography,
   CircularProgress,
   Divider,
+  Grid,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -12,8 +13,10 @@ import { useParams, useHistory } from "react-router-dom";
 import CommentSection from "./CommentSection";
 import { getPost, getPostsBySearch } from "../../actions/posts";
 import useStyles from "./styles";
+import RecommendedPost from "./recommendedpost/RecommendedPost";
 
 const PostDetails = () => {
+  const LIMIT = 5;
   const { post, posts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -68,10 +71,8 @@ const PostDetails = () => {
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+          <Typography variant="h6">{post.likes.length} Likes</Typography>
+
           <Divider style={{ margin: "20px 0" }} />
           <CommentSection post={post} />
           <Divider style={{ margin: "20px 0" }} />
@@ -92,31 +93,19 @@ const PostDetails = () => {
           <Typography gutterBottom variant="h5">
             You might also like:
           </Typography>
-          <Divider />
           <div className={classes.recommendedPosts}>
-            {recommendedPosts.map(
-              ({ title, message, name, likes, selectedFile, _id }) => (
-                <div
-                  style={{ margin: "20px", cursor: "pointer" }}
-                  onClick={() => openPost(_id)}
-                  key={_id}
-                >
-                  <Typography gutterBottom variant="h6">
-                    {title}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {name}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {message}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle1">
-                    Likes:{likes.length}
-                  </Typography>
-                  <img src={selectedFile} width="200px" />
-                </div>
-              )
-            )}
+            {recommendedPosts.slice(0, 5).map((post) => (
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={3}
+                className={classes.height}
+              >
+                <RecommendedPost post={post} className={classes.height} />
+              </Grid>
+            ))}
           </div>
         </div>
       )}
@@ -125,3 +114,27 @@ const PostDetails = () => {
 };
 
 export default PostDetails;
+
+// {recommendedPosts.map(
+//   ({ title, message, name, likes, selectedFile, _id }) => (
+//     <div
+//       style={{ margin: "20px", cursor: "pointer" }}
+//       onClick={() => openPost(_id)}
+//       key={_id}
+//     >
+//       <Typography gutterBottom variant="h6">
+//         {title}
+//       </Typography>
+//       <Typography gutterBottom variant="subtitle2">
+//         {name}
+//       </Typography>
+//       <Typography gutterBottom variant="subtitle2">
+//         {message}
+//       </Typography>
+//       <Typography gutterBottom variant="subtitle1">
+//         Likes:{likes.length}
+//       </Typography>
+//       <img src={selectedFile} width="200px" />
+//     </div>
+//   )
+// )}

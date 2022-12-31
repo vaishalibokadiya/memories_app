@@ -2,13 +2,19 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles({
   media: {
-    height: 0,
+    height: "100%",
     paddingTop: "56.25%",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     backgroundBlendMode: "darken",
   },
   border: {
     border: "solid",
+  },
+  created: {
+    padding: "0 16px",
+    position: "absolute",
+    bottom: "10px",
+    color: "white",
   },
   fullHeightCard: {
     height: "100%",
@@ -20,6 +26,7 @@ export default makeStyles({
     borderRadius: "15px",
     height: "100%",
     position: "relative",
+    margin: "8px",
   },
   overlay: {
     position: "absolute",
@@ -42,7 +49,8 @@ export default makeStyles({
     margin: "0 20px 20px 20px",
   },
   title: {
-    padding: "0 16px",
+    textAlign: "center",
+    // padding: "0 16px",
     margin: "0",
   },
   cardActions: {
@@ -52,6 +60,7 @@ export default makeStyles({
   },
   cardAction: {
     display: "block",
+    height: "100%",
     textAlign: "initial",
   },
 });

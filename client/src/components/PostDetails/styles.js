@@ -28,9 +28,14 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: "flex",
+    height: "20rem",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+  },
+  height: {
+    height: "100%",
+    display: "inline-block",
   },
   loadingPaper: {
     display: "flex",

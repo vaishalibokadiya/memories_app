@@ -35,8 +35,8 @@ const Home = () => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
+    dispatch(getPosts(page));
+  }, [page, dispatch]);
 
   const searchPost = () => {
     console.log(tags);

@@ -39,7 +39,7 @@ const Post = ({ post, setCurrentId }) => {
     }
   };
 
-  console.log(user);
+  console.log("user", user, "user.result", user?.result);
   const Likes = () => {
     console.log(`likes ${likes} ${userId}`);
 
@@ -84,8 +84,7 @@ const Post = ({ post, setCurrentId }) => {
             {moment(post.createdAt).fromNow()}
           </Typography>
         </div>
-        {(user?.result?.googleId === post?.creator ||
-          user?.result?._id === post?.creator) && (
+        {user?.result && userId === post?.creator && (
           <div className={classes.overlay2}>
             <Button
               style={{ color: "white" }}
@@ -115,8 +114,7 @@ const Post = ({ post, setCurrentId }) => {
         >
           <Likes />
         </Button>
-        {(user?.result?.googleId === post?.creator ||
-          user?.result?._id === post?.creator) && (
+        {user?.result && userId === post?.creator && (
           <Button
             size="small"
             color="primary"
